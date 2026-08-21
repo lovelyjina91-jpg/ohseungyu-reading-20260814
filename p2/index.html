@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>오승유 기본 실력 확인 · 독해 개념 20문항 | 영핏 지나티처</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Malgun Gothic','Apple SD Gothic Neo',sans-serif; background:#eef3f3; color:#26332f; min-height:100vh; display:flex; justify-content:center; padding:18px 12px 60px; }
+  .wrap { width:100%; max-width:620px; }
+  .card { background:#fff; border-radius:16px; padding:24px 20px; box-shadow:0 2px 12px rgba(0,0,0,.06); margin-bottom:14px; }
+  h1 { font-size:1.28rem; color:#2e7d6e; margin-bottom:6px; letter-spacing:-.3px; }
+  h2 { font-size:1.05rem; color:#2e7d6e; margin-bottom:10px; }
+  .sub { font-size:.88rem; color:#77857f; line-height:1.6; margin-bottom:16px; }
+  .brand { font-size:.78rem; color:#9aa8a3; text-align:center; margin-top:6px; }
+  input[type=text] { width:100%; padding:13px; font-size:1.05rem; border:1.5px solid #cfdcd8; border-radius:10px; }
+  input[type=text]:focus { outline:none; border-color:#2e7d6e; }
+  .btn { display:block; width:100%; margin-top:14px; padding:14px; font-size:1.05rem; font-weight:700; color:#fff; background:#2e7d6e; border:none; border-radius:10px; cursor:pointer; }
+  .btn:disabled { background:#bcc9c5; cursor:default; }
+  .btn.ghost { background:#fff; color:#2e7d6e; border:1.5px solid #2e7d6e; }
+  .progress { font-size:.82rem; color:#7d8b86; margin-bottom:8px; display:flex; justify-content:space-between; }
+  .bar { height:6px; background:#e3ecea; border-radius:99px; overflow:hidden; margin-bottom:16px; }
+  .bar > i { display:block; height:100%; background:#2e7d6e; width:0; transition:width .25s; }
+  .passage { background:#f7faf9; border:1.5px solid #dde8e5; border-radius:12px; padding:14px 15px; margin-bottom:16px; }
+  .passage .ptag { display:inline-block; font-size:.72rem; font-weight:700; color:#fff; background:#2e7d6e; border-radius:99px; padding:3px 10px; margin-bottom:8px; }
+  .passage p { font-size:.97rem; line-height:1.85; letter-spacing:.1px; }
+  .passage .gloss { display:block; margin-top:8px; font-size:.78rem; color:#8a9793; }
+  .qtext { font-size:1.05rem; line-height:1.65; margin-bottom:14px; font-weight:700; }
+  .choice { display:block; width:100%; text-align:left; padding:13px 14px; margin-bottom:9px; font-size:1rem; line-height:1.5; background:#f6f9f8; border:1.5px solid #dde5e3; border-radius:10px; cursor:pointer; }
+  .choice:active { background:#e2efec; }
+  .choice.picked { background:#e2efec; border-color:#2e7d6e; }
+  .num { color:#2e7d6e; font-weight:700; margin-right:6px; }
+  .concept { border:1.5px solid #dde8e5; border-radius:12px; padding:15px 16px; margin-bottom:12px; background:#fbfdfc; }
+  .concept .ctitle { font-size:1rem; font-weight:700; color:#2e7d6e; margin-bottom:8px; }
+  .concept p { font-size:.93rem; line-height:1.7; margin-bottom:6px; }
+  .ex { background:#eff5f3; border-radius:8px; padding:9px 11px; font-size:.9rem; line-height:1.65; margin-top:7px; }
+  .ex em { font-style:normal; color:#2e7d6e; font-weight:700; }
+  details { margin-bottom:14px; }
+  details > summary { cursor:pointer; font-size:.88rem; color:#2e7d6e; font-weight:700; padding:9px 12px; background:#f1f7f5; border-radius:9px; list-style:none; }
+  details > summary::-webkit-details-marker { display:none; }
+  details[open] > summary { margin-bottom:10px; }
+  .score-big { font-size:2.1rem; font-weight:700; color:#2e7d6e; text-align:center; margin:10px 0 4px; }
+  .exp { background:#f6f9f8; border-left:4px solid #2e7d6e; border-radius:8px; padding:12px 14px; margin-bottom:10px; font-size:.92rem; line-height:1.65; }
+  .exp.wrong { border-left-color:#c0392b; background:#fdf6f5; }
+  .exp b { color:#2e7d6e; }
+  .exp.wrong b { color:#c0392b; }
+  .exp .key { color:#2e7d6e; font-weight:700; }
+  .hidden { display:none; }
+  .tip { font-size:.83rem; color:#8a9793; text-align:center; margin-top:10px; line-height:1.6; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 시작 -->
+  <div class="card" id="start-card">
+    <h1 id="start-title">기본 실력 확인 📗</h1>
+    <p class="sub" id="start-sub"></p>
+    <input type="text" id="name-input" placeholder="이름을 입력하세요" maxlength="20" autocomplete="off">
+    <button class="btn" id="start-btn" disabled>개념 카드 보러 가기</button>
+    <p class="brand">제공 · 영핏 지나티처</p>
+  </div>
+
+  <!-- 개념 카드 -->
+  <div class="card hidden" id="concept-card">
+    <h1>개념 카드 8장 🃏</h1>
+    <p class="sub">이 8가지만 알면 오늘 20문항은 다 풀려요. 천천히 읽어보고 시작하기!</p>
+    <div id="concept-box"></div>
+    <button class="btn" id="to-quiz-btn">문제 풀러 가기</button>
+  </div>
+
+  <!-- 문제 -->
+  <div class="card hidden" id="quiz-card">
+    <div class="progress"><span id="progress"></span><span id="ptitle"></span></div>
+    <div class="bar"><i id="bar-i"></i></div>
+    <div id="passage-box"></div>
+    <details id="concept-toggle"><summary>📖 개념 카드 다시 보기</summary><div id="concept-box2"></div></details>
+    <div class="qtext" id="qtext"></div>
+    <div id="choices"></div>
+    <p class="tip">숫자키 1~5 로도 고를 수 있어요</p>
+  </div>
+
+  <!-- 결과 -->
+  <div class="card hidden" id="result-card">
+    <h1>수고했어요! 🎉</h1>
+    <div class="score-big" id="score-line"></div>
+    <p class="sub" style="text-align:center" id="cheer"></p>
+    <div id="submit-status" class="hidden"></div>
+    <button class="btn" id="kakao-btn">결과 복사하기 → 지나티처에게 카톡으로 보내기</button>
+    <p class="tip">버튼을 누르면 결과가 복사돼요. 카톡 대화창에 붙여넣어 보내주세요!</p>
+    <a class="btn ghost hidden" id="next-link" href="#" style="text-decoration:none;text-align:center">다음 영역 풀러 가기 →</a>
+    <div style="margin-top:22px">
+      <h2>📝 전체 해설</h2>
+      <div id="explanations"></div>
+    </div>
+    <p class="brand">제공 · 영핏 지나티처</p>
+  </div>
+
+</div>
+
+<script>
+"use strict";
+
+/* ══════ 결과 전송 (영핏 공통) ══════ */
+var ENGFIT_SUBMIT_URL = "https://script.google.com/macros/s/AKfycbz5IC3cEtaBGW10qZhrjwtjdtGugmcmYb4ZTHS4k-1LOqTRYzW-LfoAPyFB_ShjAqNp/exec";
+
+async function engfitSubmit(r) {
+  var body = JSON.stringify(r);
+  try {
+    var res = await fetch(ENGFIT_SUBMIT_URL, { method: "POST", body: body });
+    var j = await res.json();
+    return j.ok === true;
+  } catch (e) {
+    try {
+      await fetch(ENGFIT_SUBMIT_URL, { method: "POST", mode: "no-cors", body: body });
+      return true;
+    } catch (e2) { return false; }
+  }
+}
+var _engfitSent = false;
+async function engfitSubmitQuiet(r) {
+  if (_engfitSent) return; _engfitSent = true;
+  try { await engfitSubmit(r); } catch (e) {}
+}
+
+/* ══════ 지문 ══════ */
+var PASSAGES = {
+  A: { tag: "지문 A · Superstitions about Shoes",
+    text: "There are many superstitions about shoes. If you give a pair of shoes to your girlfriend, she will walk away from you! If you put your shoes on the wrong feet, you will have an accident. Also, it is dangerous to put your shoes on the table. You might get into a fight with someone. It is also bad luck to put on your left shoe first. However, if you want good luck, tie someone's shoelaces and make a wish.",
+    gloss: "*superstition 미신 / shoelace 신발 끈" },
+  B: { tag: "지문 B · Protect Your Computer",
+    text: "Nowadays, it is very important that you protect your computer and personal information. There are many harmful things on the Internet. You should be careful when you download a program. Viruses, worms, and spyware can come into your computer. These programs can harm your computer. Also, they can steal your personal information. For example, spyware records and sends your IDs, passwords, and other personal information to the person who made it.",
+    gloss: "*virus 바이러스 / worm 웜 / spyware 스파이웨어" },
+  C: { tag: "지문 C · Clocky",
+    text: "Is it hard for you to wake up in the morning? Do you hit the snooze button on your alarm clock and fall asleep again? Well, there's good news for you! There is a new alarm clock. You have to get up to turn it off. Its name is Clocky. It has wheels and sits on the floor or table. When you push the snooze button, the clock moves around the room and hides. It continues to ring loudly. You must get up, find the clock, and turn it off. If you have Clocky in your bedroom, there can be no more sleeping late!",
+    gloss: "*snooze button (알람의) 절전 버튼" }
+};
+
+/* ══════ 개념 카드 ══════ */
+var CONCEPTS = [
+  { t: "1. 가주어 it — 진짜 주어는 뒤에 있다",
+    d: "주어 자리에 to부정사(또는 that절)가 오면 너무 길어져서, 자리만 채우는 <b>가주어 it</b>을 앞에 두고 진짜 주어는 뒤로 보내요. 이때 it은 <b>'그것'이라고 해석하지 않습니다.</b>",
+    e: "<em>It</em> is dangerous <em>to put your shoes on the table.</em><br>→ 신발을 탁자 위에 올려놓는 것은 위험하다.<br><em>It</em> is very important <em>that you protect your computer.</em>" },
+  { t: "2. 의미상 주어 for + 목적격",
+    d: "to부정사의 '행동을 하는 사람'을 따로 밝힐 때 to 앞에 <b>for + 목적격</b>을 씁니다. 해석은 '<b>~가 …하는 것</b>'.",
+    e: "Is it hard <em>for you</em> <em>to wake up</em> in the morning?<br>→ <b>네가</b> 아침에 일어나는 것이 힘드니?" },
+  { t: "3. There is / There are — '~가 있다'",
+    d: "There는 해석하지 않고, <b>뒤에 오는 명사가 진짜 주어</b>예요. 그 명사가 단수면 There <b>is</b>, 복수면 There <b>are</b>.",
+    e: "<em>There are</em> many superstitions about shoes. (복수 → are)<br><em>There is</em> a new alarm clock. (단수 → is)" },
+  { t: "4. 조동사 should / have to / must",
+    d: "should는 '<b>~하는 게 좋겠다</b>'(충고), have to·must는 '<b>~해야 한다</b>'(필요·의무). 조동사 뒤에는 <b>항상 동사원형</b>이 옵니다.",
+    e: "You <em>should be</em> careful. (조심하는 게 좋겠어)<br>You <em>have to get</em> up. / You <em>must get</em> up. (일어나야 해)" },
+  { t: "5. 「동사 + 부사」 사이에 대명사! turn it off",
+    d: "turn off, put on처럼 <b>동사+부사</b> 덩어리는, 목적어가 <b>대명사(it, them...)</b>면 반드시 <b>동사와 부사 사이</b>에 넣어요. turn off it (✕)",
+    e: "turn <em>it</em> off (○) / turn off <em>it</em> (✕)<br>단, 일반 명사면 둘 다 OK → turn off <em>the clock</em> = turn <em>the clock</em> off" },
+  { t: "6. 지칭어 찾기 — it / they / these",
+    d: "글에 나온 <b>it, they, these programs</b> 같은 말은 <b>바로 앞 문장</b>에서 가리키는 대상을 찾으면 됩니다. 단수(it)인지 복수(they)인지가 결정적 힌트!",
+    e: "Viruses, worms, and spyware ... <em>These programs</em> can harm your computer. Also, <em>they</em> can steal ...<br>→ they = viruses, worms, and spyware (복수!)" },
+  { t: "7. to부정사 '~하기 위해서' (목적)",
+    d: "동사 뒤에 to+동사원형이 붙어 <b>목적</b>('~하기 위해서')을 나타내는 경우가 아주 흔해요. 'in order to'로 바꿔도 뜻이 통하면 목적입니다.",
+    e: "You have to get up <em>to turn it off</em>.<br>→ 그것을 <b>끄기 위해서</b> 일어나야 한다." },
+  { t: "8. 주제·목적·불일치 문제 푸는 법",
+    d: "<b>주제·요지</b>는 반복되는 핵심어와 마지막 문장을 보고, <b>목적</b>은 글쓴이가 무엇을 하려는지(소개·광고 / 충고 / 사과 / 경고)를 보세요. <b>불일치</b> 문제는 보기 하나하나를 지문에서 <b>직접 찾아 대조</b>하는 게 안전합니다.",
+    e: "however, also, for example 같은 <em>연결어</em>가 나오면 흐름이 바뀌거나 예시가 이어진다는 신호! 문제 풀 때 꼭 표시해 두기." }
+];
+
+/* ══════ 문제 20문항 ══════ */
+var ALL_QUESTIONS = [
+/* ─── 지문 A (1~7) ─── */
+{ p:"A", q:"윗글의 주제로 가장 적절한 것은?",
+  choices:["신발과 관련된 여러 가지 미신","신발을 오래 신는 관리 방법","여자친구에게 줄 선물 고르는 법","좋은 신발을 고르는 기준","신발 끈을 예쁘게 묶는 방법"],
+  answer:"신발과 관련된 여러 가지 미신",
+  exp:"첫 문장 <span class='key'>There are many superstitions about shoes.</span>가 곧 주제문이에요. 그 뒤로는 전부 '어떤 미신이 있는지'를 하나씩 나열하고 있죠. 이렇게 <b>첫 문장에 핵심어(superstitions)</b>가 나오고 뒤에서 예시가 이어지면, 그 첫 문장이 주제입니다." },
+
+{ p:"A", q:"윗글에 따르면, <b>행운</b>을 가져오는 행동은?",
+  choices:["다른 사람의 신발 끈을 묶어 주며 소원 빌기","신발을 탁자 위에 올려놓기","왼쪽 신발을 먼저 신기","여자친구에게 신발 선물하기","신발을 반대쪽 발에 신기"],
+  answer:"다른 사람의 신발 끈을 묶어 주며 소원 빌기",
+  exp:"마지막 문장 <span class='key'>However, if you want good luck, tie someone's shoelaces and make a wish.</span> — <b>However</b>가 나온 순간 '나쁜 것들 → 좋은 것'으로 흐름이 바뀐다는 신호예요(개념 카드 8). 나머지 보기는 전부 그 앞에 나온 <b>불운</b>한 행동들입니다." },
+
+{ p:"A", q:"밑줄 친 <b>she will walk away from you!</b>가 뜻하는 바로 가장 적절한 것은?",
+  choices:["여자친구가 떠나가 버린다(헤어진다)","여자친구가 함께 산책하자고 한다","여자친구가 신발을 신고 운동하러 간다","여자친구가 신발을 돌려준다","여자친구가 멀리 이사를 간다"],
+  answer:"여자친구가 떠나가 버린다(헤어진다)",
+  exp:"<span class='key'>walk away from ~</span>는 글자 그대로는 '~에게서 걸어 나가다'지만, 여기서는 <b>'떠나 버리다, 관계를 끝내다'</b>라는 뜻이에요. 신발(=걷는 물건)을 선물하면 그 신발을 신고 떠나간다는 미신이라서, 글 전체가 '불운'을 설명하는 흐름과도 딱 맞습니다." },
+
+{ p:"A", q:"<b>It</b> is dangerous to put your shoes on the table. 에서 <b>It</b>이 실제로 가리키는 것은?",
+  choices:["to put your shoes on the table","the table","your shoes","앞 문장 전체","날씨나 상황을 나타내는 말이라 뜻이 없다"],
+  answer:"to put your shoes on the table",
+  exp:"개념 카드 1번! 주어가 길어지는 걸 막으려고 자리만 채운 <b>가주어 it</b>이고, 진짜 주어는 뒤의 <span class='key'>to put your shoes on the table</span>이에요. 그래서 '<b>그것은</b> 위험하다'가 아니라 '<b>신발을 탁자 위에 올려놓는 것은</b> 위험하다'로 해석해야 자연스럽습니다." },
+
+{ p:"A", q:"the wrong <b>feet</b>의 feet에 대한 설명으로 옳은 것은?",
+  choices:["foot의 복수형이다","foot의 과거형이다","feets라고 써야 올바른 복수형이다","'손'을 뜻하는 단어이다","단수형이라서 '한쪽 발'을 뜻한다"],
+  answer:"foot의 복수형이다",
+  exp:"<span class='key'>foot → feet</span>은 -s를 붙이지 않고 모양이 바뀌는 <b>불규칙 복수형</b>이에요(tooth→teeth, child→children과 같은 무리). 그래서 feets는 없는 말! 신발은 양쪽 발에 신으니 복수 feet을 쓴 것이고, <b>the wrong feet</b>은 '반대쪽 발'이라는 뜻입니다." },
+
+{ p:"A", q:"윗글의 내용과 일치하지 <b>않는</b> 것은?",
+  choices:["여자친구에게 신발을 주면 사이가 더 좋아진다고 한다","신발을 반대쪽 발에 신으면 사고가 난다고 한다","신발을 탁자 위에 두면 누군가와 다툴 수 있다고 한다","왼쪽 신발을 먼저 신으면 불운하다고 한다","신발 끈을 묶어 주며 소원을 빌면 행운이 온다고 한다"],
+  answer:"여자친구에게 신발을 주면 사이가 더 좋아진다고 한다",
+  exp:"지문은 <span class='key'>If you give a pair of shoes to your girlfriend, she will walk away from you!</span> — 오히려 <b>떠나간다</b>고 했으니 정반대죠. 불일치 문제는 보기를 하나씩 지문에서 찾아 <b>직접 대조</b>하는 게 가장 안전해요(개념 카드 8)." },
+
+{ p:"A", q:"<b>However</b>가 그 자리에 쓰인 이유로 가장 적절한 것은?",
+  choices:["불운을 부르는 이야기들 뒤에, 반대로 행운을 부르는 방법으로 흐름을 바꾸려고","앞의 예시를 하나 더 추가하려고","원인과 그에 따른 결과를 연결하려고","일이 일어난 시간 순서를 나타내려고","글쓴이 자신의 주장을 반박하려고"],
+  answer:"불운을 부르는 이야기들 뒤에, 반대로 행운을 부르는 방법으로 흐름을 바꾸려고",
+  exp:"However 앞은 전부 <b>불운</b>(사고, 다툼, 이별), 뒤는 <b>good luck</b>이에요. However는 <span class='key'>'하지만'</span>이라는 뜻으로 <b>흐름을 뒤집는 신호등</b>입니다. 참고로 '예시 추가'는 also, '예를 들어'는 for example이 담당해요." },
+
+/* ─── 지문 B (8~13) ─── */
+{ p:"B", q:"윗글에서 필자가 말하고자 하는 바로 가장 적절한 것은?",
+  choices:["인터넷의 유해한 프로그램을 조심해야 한다","컴퓨터는 자주 새것으로 바꾸는 것이 좋다","비밀번호는 짧고 외우기 쉽게 만들어야 한다","인터넷 사용을 완전히 끊는 것이 최선이다","개인 정보는 친구와 공유해도 괜찮다"],
+  answer:"인터넷의 유해한 프로그램을 조심해야 한다",
+  exp:"첫 문장에서 <span class='key'>it is very important that you protect your computer and personal information</span>이라 못 박고, 이어서 harmful things / You should be careful / 바이러스·웜·스파이웨어를 설명해요. 즉 <b>'인터넷의 해로운 프로그램을 조심하라'</b>가 핵심. '인터넷을 끊어라'까지는 말하지 않았다는 점을 꼭 구분하세요!" },
+
+{ p:"B", q:"밑줄 친 <b>they</b>가 가리키는 것으로 알맞은 것은?",
+  choices:["viruses, worms, and spyware","your IDs and passwords","your computer and your phone","the people who use the Internet","the person who made spyware"],
+  answer:"viruses, worms, and spyware",
+  exp:"<span class='key'>These programs can harm your computer. Also, <b>they</b> can steal ...</span> — they는 <b>복수</b>이고 바로 앞의 These programs, 즉 <b>viruses, worms, and spyware</b>를 다시 가리켜요(개념 카드 6). 지칭어는 '단수냐 복수냐'부터 확인하면 훨씬 빨리 찾을 수 있습니다." },
+
+{ p:"B", q:"윗글에서 <b>spyware</b>가 하는 일로 언급된 것은?",
+  choices:["아이디·비밀번호를 기록해 만든 사람에게 보낸다","컴퓨터 속도를 더 빠르게 만들어 준다","백신 프로그램을 자동으로 설치해 준다","인터넷 연결을 안전하게 지켜 준다","오래된 파일을 자동으로 정리해 준다"],
+  answer:"아이디·비밀번호를 기록해 만든 사람에게 보낸다",
+  exp:"<span class='key'>spyware records and sends your IDs, passwords, and other personal information to the person who made it</span> 그대로예요. <b>record(기록하다) + send(보내다)</b> 두 동사가 and로 이어진 구조라, 둘 다 spyware가 하는 일입니다. 참고로 For example로 시작했으니 <b>앞 문장(개인 정보를 훔친다)의 구체적 예시</b>죠." },
+
+{ p:"B", q:"the person who made <b>it</b> 에서 <b>it</b>이 가리키는 것은?",
+  choices:["spyware","your computer","the Internet","your password","a program you download"],
+  answer:"spyware",
+  exp:"이 문장의 주어가 spyware이고, '<b>그것을</b> 만든 사람에게 보낸다'는 뜻이니 it = <span class='key'>spyware</span>예요. 덧붙여 <b>who</b>는 사람(the person)을 꾸며 주는 관계대명사로, '<b>~한 사람</b>'처럼 뒤에서 앞으로 붙여 해석하면 깔끔합니다." },
+
+{ p:"B", q:"<b>You should be careful when you download a program.</b>의 해석으로 가장 알맞은 것은?",
+  choices:["프로그램을 내려받을 때는 조심해야 한다","프로그램을 내려받은 뒤에는 조심할 필요가 없다","조심하기만 하면 어떤 프로그램이든 내려받아도 된다","프로그램을 내려받을지 말지 먼저 정해야 한다","조심스러운 사람만 프로그램을 내려받을 수 있다"],
+  answer:"프로그램을 내려받을 때는 조심해야 한다",
+  exp:"<span class='key'>should</span>는 '~하는 게 좋겠다/해야 한다'는 <b>충고</b>, <span class='key'>when</span>은 '~할 때'예요(개념 카드 4). 뒤에서 앞으로 붙여 '네가 프로그램을 내려받을 <b>때</b>, 조심해야 한다'로 읽으면 됩니다. when을 '언제'로만 외우면 이런 문장에서 막히니 주의!" },
+
+{ p:"B", q:"윗글의 내용과 일치하는 것은?",
+  choices:["요즘은 컴퓨터와 개인 정보를 지키는 일이 매우 중요하다","인터넷에는 해로운 것이 거의 없다","바이러스는 컴퓨터 안으로 들어올 수 없다","스파이웨어는 개인 정보를 대신 지워 준다","프로그램을 내려받는 일은 언제나 안전하다"],
+  answer:"요즘은 컴퓨터와 개인 정보를 지키는 일이 매우 중요하다",
+  exp:"첫 문장 <span class='key'>Nowadays, it is very important that you protect your computer and personal information.</span>과 정확히 일치해요. 나머지는 모두 지문과 <b>반대</b>인 내용(many harmful things / can come into your computer / can steal / should be careful)입니다." },
+
+/* ─── 지문 C (14~20) ─── */
+{ p:"C", q:"윗글의 목적으로 가장 적절한 것은?",
+  choices:["새로 나온 알람 시계를 소개(광고)하려고","늦잠의 위험성을 경고하려고","고장 난 시계의 수리를 부탁하려고","아침 운동의 좋은 점을 알리려고","시계를 잃어버린 일을 사과하려고"],
+  answer:"새로 나온 알람 시계를 소개(광고)하려고",
+  exp:"<span class='key'>Well, there's good news for you! There is a new alarm clock.</span>처럼 독자에게 말을 걸며 <b>새 제품의 이름·기능·장점</b>을 쭉 알려 주고 있어요. 이런 흐름은 전형적인 <b>소개·광고문</b>입니다. 문제점(아침에 못 일어남)을 먼저 던지고 해결책을 내미는 것도 광고의 단골 구성이에요." },
+
+{ p:"C", q:"Clocky에 대한 설명으로 윗글의 내용과 일치하지 <b>않는</b> 것은?",
+  choices:["숨은 뒤에는 알람 소리가 저절로 멈춘다","바퀴가 달려 있다","바닥이나 탁자 위에 놓는다","절전 버튼을 누르면 방 안을 돌아다닌다","끄려면 일어나서 시계를 찾아야 한다"],
+  answer:"숨은 뒤에는 알람 소리가 저절로 멈춘다",
+  exp:"지문은 <span class='key'>It continues to ring loudly.</span> — 숨고 나서도 <b>계속 크게 울린다</b>고 했어요. <b>continue = 계속하다</b>이니 '멈춘다'는 정반대죠. 나머지는 has wheels / sits on the floor or table / moves around the room and hides / You must get up, find the clock, and turn it off 에서 각각 확인됩니다." },
+
+{ p:"C", q:"Is it hard <b>for you</b> to wake up in the morning? 에서 <b>for you</b>의 역할은?",
+  choices:["to wake up 하는 사람이 누구인지 나타낸다(의미상 주어)","시간이 얼마나 걸리는지 나타낸다","그렇게 되는 이유를 나타낸다","가려는 목적지를 나타낸다","비교하는 대상을 나타낸다"],
+  answer:"to wake up 하는 사람이 누구인지 나타낸다(의미상 주어)",
+  exp:"개념 카드 2번! <span class='key'>It is + 형용사 + for + 목적격 + to부정사</span> 형태에서 for you는 '<b>일어나는 행동을 하는 사람</b>'을 밝혀 줍니다. 그래서 '<b>네가</b> 아침에 일어나는 것이 힘드니?'로 해석해요. for을 무조건 '~를 위해'로 외우면 이 문장이 어색해집니다." },
+
+{ p:"C", q:"밑줄 친 <b>turn it off</b>의 어순에 대한 설명으로 옳은 것은?",
+  choices:["대명사 목적어는 동사와 부사 사이에 넣어야 한다","turn off it 이 올바른 어순이다","it은 생략해도 뜻이 통한다","off가 전치사이므로 순서를 바꿀 수 없다","turn it off와 turn off it 둘 다 자연스럽다"],
+  answer:"대명사 목적어는 동사와 부사 사이에 넣어야 한다",
+  exp:"개념 카드 5번, 승유가 교재 여백에 적어 둔 바로 그 규칙이에요! <span class='key'>turn + 대명사 + off</span>가 원칙이라 turn off it은 틀립니다. 다만 목적어가 일반 명사면 자유로워서 <b>turn off the clock = turn the clock off</b> 둘 다 가능해요. 지문 뒷부분에도 turn it off가 한 번 더 나옵니다." },
+
+{ p:"C", q:"You have to get up <b>to turn</b> it off. 에서 <b>to turn</b>의 뜻으로 알맞은 것은?",
+  choices:["~하기 위해서 (목적)","~하는 것 (주어 역할)","~할, ~하는 (앞의 명사를 꾸밈)","~해서 (감정이 생긴 원인)","~하다니 (판단의 근거)"],
+  answer:"~하기 위해서 (목적)",
+  exp:"개념 카드 7번! <b>in order to turn it off</b>로 바꿔도 뜻이 통하니 <span class='key'>목적</span>이에요. '그것을 <b>끄기 위해서</b> 일어나야 한다' → 바로 이게 Clocky의 핵심 기능이죠. 참고로 have to는 '~해야 한다'라서, 문장 전체가 '반드시 일어나게 만드는 시계'라는 광고 포인트가 됩니다." },
+
+{ p:"C", q:"there can be <b>no more sleeping late</b>! 의 의미로 가장 적절한 것은?",
+  choices:["더 이상 늦잠을 잘 수 없다","늦잠을 더 오래 잘 수 있다","밤에 늦게 자도 괜찮다","잠을 잘 곳이 마땅히 없다","알람이 더 이상 울리지 않는다"],
+  answer:"더 이상 늦잠을 잘 수 없다",
+  exp:"<span class='key'>no more ~</span>는 '더 이상 ~은 없다', <span class='key'>sleep late</span>는 '늦잠을 자다'예요. 그래서 '<b>더 이상 늦잠은 없다</b>' = 늦잠을 잘 수 없다는 뜻. 앞 문장들이 '일어나야만 끌 수 있다'였으니 결론으로 딱 맞죠. sleep late를 '늦게 자다'로 오해하기 쉬운데, '늦게 자다'는 <b>go to bed late</b>랍니다." },
+
+{ p:"C", q:"윗글(지문 C)의 제목으로 가장 적절한 것은?",
+  choices:["An Alarm Clock That Runs Away","The Long History of Clocks","How to Sleep Better at Night","Why Teenagers Need More Sleep","The Danger of Loud Noises"],
+  answer:"An Alarm Clock That Runs Away",
+  exp:"이 글의 핵심은 <b>'도망 다니는 알람 시계'</b> 하나예요. moves around the room, hides, You must get up, find the clock 이 전부 '도망간다'는 특징을 설명하죠. 제목 문제는 <b>글 전체를 덮으면서도 너무 넓지 않은 것</b>을 골라야 해요 — 시계의 역사, 잠 자는 법, 소음의 위험은 글에 없거나 일부만 스쳐 가는 내용입니다." }
+];
+
+/* ══════ 진행 로직 ══════ */
+var SECTION = "B";
+var SECTION_META = {
+  A: { id:"clinic-osy-0814-p1", label:"1영역 · 신발에 얽힌 미신",
+       title:"오승유 기본 실력 확인 1영역 · 신발 미신 (8/14)",
+       intro:"신발에 얽힌 미신 지문으로 만든 개념 확인 문제 <b>7문항</b>이에요.<br>먼저 <b>개념 카드 8장</b>을 쭉 보고 시작해요.<br>지문은 문제 화면 위에 항상 펼쳐져 있으니 계속 보면서 풀면 됩니다!<br><b>카이스트 가는 길, 오늘도 한 걸음!</b> 💪",
+       next:"../p2/", nextLabel:"2영역(컴퓨터 보호) 풀러 가기 →" },
+  B: { id:"clinic-osy-0814-p2", label:"2영역 · 컴퓨터와 개인정보 보호",
+       title:"오승유 기본 실력 확인 2영역 · 컴퓨터 보호 (8/14)",
+       intro:"컴퓨터·개인정보 보호 지문으로 만든 개념 확인 문제 <b>6문항</b>이에요.<br>먼저 <b>개념 카드 8장</b>을 쭉 보고 시작해요.<br>지문은 문제 화면 위에 항상 펼쳐져 있으니 계속 보면서 풀면 됩니다!<br><b>지칭어(it·they) 찾기가 이 영역의 핵심!</b> 🔍",
+       next:"../p3/", nextLabel:"3영역(Clocky) 풀러 가기 →" },
+  C: { id:"clinic-osy-0814-p3", label:"3영역 · Clocky 알람시계",
+       title:"오승유 기본 실력 확인 3영역 · Clocky (8/14)",
+       intro:"Clocky 알람시계 지문으로 만든 개념 확인 문제 <b>7문항</b>이에요.<br>먼저 <b>개념 카드 8장</b>을 쭉 보고 시작해요.<br>지문은 문제 화면 위에 항상 펼쳐져 있으니 계속 보면서 풀면 됩니다!<br><b>turn it off 어순, 오늘 확실히 잡고 가요!</b> ⏰",
+       next:"", nextLabel:"" }
+};
+var META = SECTION_META[SECTION];
+var QUESTIONS = ALL_QUESTIONS.filter(function(q){ return q.p === SECTION; });
+var QUIZ_ID = META.id;
+var QUIZ_TITLE = META.title;
+var CIRCLED = ["①","②","③","④","⑤"];
+
+var studentName = "", current = 0, correctCount = 0;
+var wrongNumbers = [], answersLog = [], startTime = 0, locked = false;
+var shuffled = [];
+
+function $(id){ return document.getElementById(id); }
+
+$("start-title").innerHTML = META.label + " 📗";
+$("start-sub").innerHTML = META.intro;
+document.title = QUIZ_TITLE + " | 영핏 지나티처";
+$("to-quiz-btn").textContent = "문제 풀러 가기 (" + QUESTIONS.length + "문항)";
+
+function shuffle(arr){
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--){
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+function conceptHTML(){
+  return CONCEPTS.map(function(c){
+    return '<div class="concept"><div class="ctitle">' + c.t + '</div><p>' + c.d + '</p><div class="ex">' + c.e + '</div></div>';
+  }).join("");
+}
+
+/* 이름 게이트 */
+var nameInput = $("name-input"), startBtn = $("start-btn");
+nameInput.addEventListener("input", function(){
+  startBtn.disabled = nameInput.value.trim().length === 0;
+});
+nameInput.addEventListener("keydown", function(e){
+  if (e.key === "Enter" && !startBtn.disabled) startBtn.click();
+});
+
+startBtn.addEventListener("click", function(){
+  studentName = nameInput.value.trim();
+  if (!studentName) return;
+  startTime = Date.now();
+  shuffled = QUESTIONS.map(function(q){ return shuffle(q.choices); });
+  $("concept-box").innerHTML = conceptHTML();
+  $("concept-box2").innerHTML = conceptHTML();
+  $("start-card").classList.add("hidden");
+  $("concept-card").classList.remove("hidden");
+  window.scrollTo(0, 0);
+});
+
+$("to-quiz-btn").addEventListener("click", function(){
+  $("concept-card").classList.add("hidden");
+  $("quiz-card").classList.remove("hidden");
+  showQuestion();
+  window.scrollTo(0, 0);
+});
+
+function showQuestion(){
+  var q = QUESTIONS[current];
+  var pg = PASSAGES[q.p];
+  $("progress").textContent = (current + 1) + " / " + QUESTIONS.length;
+  $("ptitle").textContent = pg.tag.split(" · ")[0];
+  $("bar-i").style.width = ((current) / QUESTIONS.length * 100) + "%";
+  $("passage-box").innerHTML =
+    '<div class="passage"><span class="ptag">' + pg.tag + '</span><p>' + pg.text +
+    '<span class="gloss">' + pg.gloss + '</span></p></div>';
+  $("qtext").innerHTML = "Q" + (current + 1) + ". " + q.q;
+  var box = $("choices");
+  box.innerHTML = "";
+  shuffled[current].forEach(function(c, i){
+    var b = document.createElement("button");
+    b.className = "choice";
+    b.innerHTML = '<span class="num">' + CIRCLED[i] + '</span>' + c;
+    b.addEventListener("click", function(){ b.classList.add("picked"); pick(c, CIRCLED[i]); });
+    box.appendChild(b);
+  });
+  var t = $("concept-toggle"); if (t) t.open = false;
+}
+
+function pick(choice, mark){
+  if (locked) return; locked = true;
+  var q = QUESTIONS[current];
+  var ok = (choice === q.answer);
+  if (ok) correctCount++; else wrongNumbers.push(current + 1);
+  answersLog.push({ no: current + 1, ok: ok, chosen: mark + " " + choice, answer: q.answer });
+  setTimeout(function(){
+    locked = false;
+    current++;
+    if (current < QUESTIONS.length){ showQuestion(); window.scrollTo(0, 0); }
+    else showResult();
+  }, 250);
+}
+
+document.addEventListener("keydown", function(e){
+  if ($("quiz-card").classList.contains("hidden")) return;
+  var n = parseInt(e.key, 10);
+  if (n >= 1 && n <= 5){
+    var btns = $("choices").querySelectorAll(".choice");
+    if (btns[n - 1]) btns[n - 1].click();
+  }
+});
+
+function cheerText(s){
+  if (s >= 19) return "완벽에 가까워요! 이 정도 독해력이면 지문이 길어져도 끄떡없어요 👏";
+  if (s >= 16) return "아주 잘했어요! 틀린 문항 해설만 확실히 정리하면 완성입니다 😊";
+  if (s >= 12) return "잘하고 있어요! 개념 카드를 한 번 더 읽고 오답 해설을 꼼꼼히 보면 훨씬 단단해져요 💪";
+  return "여기까지 온 것부터가 잘한 거예요! 해설을 천천히 읽으면서 개념 카드와 짝지어 보면 다음엔 확 올라갑니다 🌱";
+}
+
+function showResult(){
+  $("quiz-card").classList.add("hidden");
+  $("result-card").classList.remove("hidden");
+  $("score-line").textContent = correctCount + " / " + QUESTIONS.length;
+  $("cheer").textContent = cheerText(correctCount);
+
+  var expBox = $("explanations");
+  QUESTIONS.forEach(function(q, i){
+    var log = answersLog[i];
+    var d = document.createElement("div");
+    d.className = "exp" + (log && log.ok ? "" : " wrong");
+    var head = log && log.ok
+      ? "Q" + (i + 1) + ". 정답! ⭕"
+      : "Q" + (i + 1) + ". 다시 보기 (내가 고른 답: " + (log ? log.chosen : "-") + " / 정답: " + q.answer + ")";
+    d.innerHTML = "<b>" + head + "</b><br>" + q.exp;
+    expBox.appendChild(d);
+  });
+
+  if (META.next) {
+    var nl = $("next-link");
+    nl.href = META.next;
+    nl.textContent = META.nextLabel;
+    nl.classList.remove("hidden");
+  }
+
+  window.scrollTo(0, 0);
+
+  engfitSubmitQuiet({
+    quizId: QUIZ_ID,
+    quizTitle: QUIZ_TITLE,
+    student: studentName,
+    score: correctCount,
+    total: QUESTIONS.length,
+    wrong: wrongNumbers,
+    durationSec: Math.round((Date.now() - startTime) / 1000),
+    detail: answersLog
+  });
+}
+
+$("kakao-btn").addEventListener("click", function(){
+  var mins = Math.round((Date.now() - startTime) / 60000);
+  var msg = "[영핏 기본 실력 확인 · " + META.label + "]\n"
+          + "학생: " + studentName + "\n"
+          + "점수: " + correctCount + " / " + QUESTIONS.length + "\n"
+          + "틀린 문항: " + (wrongNumbers.length ? wrongNumbers.join(", ") + "번" : "없음") + "\n"
+          + "걸린 시간: 약 " + mins + "분";
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(msg).then(function(){
+      $("kakao-btn").textContent = "복사 완료! 카톡에 붙여넣어 보내주세요 ✓";
+    }).catch(function(){ window.prompt("아래 내용을 길게 눌러 복사하세요", msg); });
+  } else {
+    window.prompt("아래 내용을 길게 눌러 복사하세요", msg);
+  }
+});
+</script>
+</body>
+</html>
