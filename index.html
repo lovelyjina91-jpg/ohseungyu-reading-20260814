@@ -23,29 +23,30 @@
   .brand { text-align:center; margin-top:18px; }
   .brand .logo { display:inline-flex; align-items:center; gap:7px; font-weight:800; color:var(--teal-d); font-size:14px; }
   .brand .logo .mk { width:23px; height:23px; border-radius:7px; background:var(--teal); color:#fff; display:grid; place-items:center; font-size:12px; font-weight:800; }
-  input[type=text] { width:100%; padding:13px; font-size:1.05rem; border:1.5px solid var(--line); border-radius:10px; }
-  input[type=text]:focus { outline:none; border-color:var(--teal); }
-  .btn { display:block; width:100%; margin-top:12px; padding:14px; font-size:1.05rem; font-weight:700; color:#fff; background:var(--teal); border:none; border-radius:10px; cursor:pointer; }
-  .btn:disabled { background:#b6c4c6; cursor:default; }
+  /* 시작 화면 */
+  .eyebrow { font-size:.74rem; letter-spacing:3px; color:var(--ink2); font-weight:700; text-align:center; margin-bottom:7px; }
+  .title-big { font-size:1.5rem; font-weight:800; color:var(--teal-d); text-align:center; letter-spacing:-.5px; margin-bottom:8px; }
+  .title-sub { font-size:.93rem; font-weight:700; color:var(--ink); text-align:center; margin-bottom:5px; }
+  .title-meta { font-size:.84rem; color:var(--ink2); text-align:center; margin-bottom:20px; }
+  .lab { display:block; font-size:.85rem; font-weight:700; color:var(--ink2); margin-bottom:7px; }
+  input[type=text] { width:100%; padding:13px; font-size:1.05rem; border:1.5px solid var(--line); border-radius:11px; background:#f7faf9; }
+  input[type=text]:focus { outline:none; border-color:var(--teal); background:#fff; }
+  .secgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:9px; }
+  .secbtn { border:1.6px solid var(--line); border-radius:11px; padding:12px 7px 11px; background:#f7faf9; text-align:center; cursor:pointer; }
+  .secbtn.on { border-color:var(--teal); background:var(--teal-l); box-shadow:0 0 0 2px rgba(47,124,131,.16); }
+  .secbtn .t { font-weight:800; color:var(--teal-d); font-size:.96rem; }
+  .secbtn .s { font-size:.75rem; color:var(--ink2); margin-top:3px; line-height:1.45; }
+  .secbtn .badge { display:block; font-size:.7rem; font-weight:800; margin-top:5px; min-height:.9em; }
+  .secbtn .badge.ok { color:var(--teal-d); }
+  .secbtn .badge.ing { color:#b06a2c; }
+  .secdesc { font-size:.85rem; color:var(--ink2); line-height:1.6; background:var(--teal-l); border-radius:10px; padding:11px 13px; margin-top:11px; min-height:1em; }
+  .notes { font-size:.82rem; color:var(--ink2); line-height:1.8; margin-top:14px; }
+  .allbox { background:var(--teal-l); border:1.6px solid var(--teal); border-radius:12px; padding:14px 15px; margin-top:14px; text-align:center; }
+  .allbox .t { font-weight:800; color:var(--teal-d); margin-bottom:8px; }
+  .btn { display:block; width:100%; margin-top:14px; padding:15px; font-size:1.05rem; font-weight:800; color:#fff; background:var(--teal); border:none; border-radius:11px; cursor:pointer; }
+  .btn:disabled { background:#c3cfd1; cursor:default; }
   .btn.ghost { background:#fff; color:var(--teal-d); border:1.6px solid var(--teal); }
-  .btn.sm { padding:11px; font-size:.95rem; }
-  /* 영역 선택 */
-  .seclist { margin-top:4px; }
-  .sec { border:1.6px solid var(--line); border-radius:13px; padding:15px 16px; margin-bottom:11px; background:#fbfdfc; cursor:pointer; }
-  .sec:active { background:var(--teal-l); }
-  .sec.done { background:var(--teal-l); border-color:var(--teal); }
-  .sec .row { display:flex; align-items:center; gap:9px; margin-bottom:5px; }
-  .sec .no { flex:0 0 auto; width:27px; height:27px; border-radius:8px; background:var(--teal); color:#fff; display:grid; place-items:center; font-weight:800; font-size:.9rem; }
-  .sec.done .no { background:var(--teal-d); }
-  .sec .t { font-size:1.02rem; font-weight:700; color:var(--teal-d); }
-  .sec .n { font-size:.73rem; font-weight:700; color:#fff; background:var(--teal); border-radius:99px; padding:3px 9px; margin-left:auto; flex:0 0 auto; }
-  .sec .d { font-size:.86rem; color:var(--ink2); line-height:1.6; }
-  .sec .st { font-size:.84rem; font-weight:700; margin-top:7px; }
-  .sec .st.todo { color:var(--ink2); }
-  .sec .st.ing { color:#b06a2c; }
-  .sec .st.ok { color:var(--teal-d); }
-  .allbox { background:var(--teal-l); border-radius:12px; padding:14px 15px; margin-top:6px; text-align:center; }
-  .allbox .t { font-weight:800; color:var(--teal-d); margin-bottom:6px; }
+  .btn.sm { padding:11px; font-size:.93rem; margin-top:9px; }
   /* 문제 */
   .progress { font-size:.82rem; color:var(--ink2); margin-bottom:8px; display:flex; justify-content:space-between; }
   .bar { height:6px; background:var(--line); border-radius:99px; overflow:hidden; margin-bottom:16px; }
@@ -82,43 +83,50 @@
 
   <div class="brand-head">
     <div class="logo"><span class="mk">영</span> 영핏 지나티처</div>
-    <div class="bsub">기본 실력 확인 · 독해 개념 20문항</div>
+    <div class="bsub">기본 실력 확인 · 독해 개념</div>
   </div>
 
-  <!-- 1. 이름 -->
+  <!-- 시작 화면 : 이름 + 영역 선택 + 시작 -->
   <div class="card" id="start-card">
-    <h1>이름을 입력해 주세요 ✏️</h1>
-    <p class="sub">교재 지문 3개로 만든 개념 확인 문제예요.<br>
-    이름을 넣으면 <b>영역 선택 화면</b>으로 넘어갑니다.<br>
-    <b>카이스트 가는 길, 오늘도 한 걸음!</b> 💪</p>
-    <input type="text" id="name-input" placeholder="이름" maxlength="20" autocomplete="off">
-    <button class="btn" id="start-btn" disabled>시작하기</button>
-    <div class="brand"><span class="logo"><span class="mk">영</span> 영핏 지나티처</span></div>
-  </div>
+    <div class="eyebrow">READING · 기본 실력 확인</div>
+    <div class="title-big">독해 개념 <span style="color:var(--teal)">20문항</span></div>
+    <div class="title-sub">주제 · 목적 · 지칭어 · 내용일치 · 구문 해석</div>
+    <div class="title-meta">전체 20문항 · 3개 영역 · 지문 3개 · 5지선다</div>
 
-  <!-- 2. 영역 선택 -->
-  <div class="card hidden" id="menu-card">
-    <h1>어느 영역부터 풀까요? 📗</h1>
-    <p class="sub" id="menu-sub"></p>
-    <div class="seclist" id="seclist"></div>
-    <div id="all-done" class="allbox hidden">
+    <label class="lab" for="name-input">이름</label>
+    <input type="text" id="name-input" placeholder="이름을 입력하세요" maxlength="20" autocomplete="off">
+
+    <label class="lab" style="margin-top:16px">영역 선택 (지문 순서)</label>
+    <div class="secgrid" id="secgrid"></div>
+    <div class="secdesc" id="sec-desc">영역을 선택하면 어떤 내용을 다루는지 알려드려요.</div>
+
+    <button class="btn" id="start-btn" disabled>시험 시작</button>
+    <button class="btn ghost sm hidden" id="fresh-btn">이 영역 처음부터 다시 풀기</button>
+
+    <div class="allbox hidden" id="all-done">
       <div class="t">세 영역 모두 끝냈어요! 🎉</div>
-      <button class="btn sm" id="all-copy-btn">전체 결과 한 번에 복사하기</button>
+      <button class="btn sm" id="all-copy-btn" style="margin-top:0">전체 결과 한 번에 복사하기</button>
     </div>
-    <button class="btn ghost sm" id="reset-btn">전부 지우고 처음부터 다시</button>
+
+    <div class="notes">
+      · 지문 순서 그대로 영역을 나눴어요 (7 · 6 · 7문항)<br>
+      · 영역마다 개념 카드 8장을 먼저 보고 문제로 넘어가요<br>
+      · 중간에 창이 닫혀도 풀던 자리에서 이어서 풀 수 있어요
+    </div>
+    <button class="btn ghost sm" id="reset-btn">기록 전부 지우기</button>
     <div class="brand"><span class="logo"><span class="mk">영</span> 영핏 지나티처</span></div>
   </div>
 
-  <!-- 3. 개념 카드 -->
+  <!-- 개념 카드 -->
   <div class="card hidden" id="concept-card">
     <h1>개념 카드 8장 🃏</h1>
     <p class="sub">이 8가지만 알면 오늘 문제는 다 풀려요. 천천히 읽어보고 시작하기!</p>
     <div id="concept-box"></div>
     <button class="btn" id="to-quiz-btn">문제 풀러 가기</button>
-    <button class="btn ghost sm" id="back-menu-1">← 영역 선택으로</button>
+    <button class="btn ghost sm" id="back-menu-1">← 처음 화면으로</button>
   </div>
 
-  <!-- 4. 문제 -->
+  <!-- 문제 -->
   <div class="card hidden" id="quiz-card">
     <div class="progress"><span id="progress"></span><span id="ptitle"></span></div>
     <div class="bar"><i id="bar-i"></i></div>
@@ -129,7 +137,7 @@
     <p class="tip">숫자키 1~5 로도 고를 수 있어요</p>
   </div>
 
-  <!-- 5. 결과 -->
+  <!-- 결과 -->
   <div class="card hidden" id="result-card">
     <h1 id="result-title">수고했어요! 🎉</h1>
     <div class="score-big" id="score-line"></div>
@@ -138,7 +146,7 @@
     <button class="btn" id="kakao-btn">결과 복사하기 → 지나티처에게 카톡으로 보내기</button>
     <p class="tip">버튼을 누르면 결과가 복사돼요. 카톡 대화창에 붙여넣어 보내주세요!</p>
     <button class="btn ghost" id="next-btn">다음 영역 풀러 가기 →</button>
-    <button class="btn ghost sm" id="back-menu-2">← 영역 선택으로</button>
+    <button class="btn ghost sm" id="back-menu-2">← 처음 화면으로</button>
     <div style="margin-top:22px">
       <h2>📝 전체 해설</h2>
       <div id="explanations"></div>
@@ -322,11 +330,11 @@ var ALL_QUESTIONS = [
 
 /* ══════ 영역 정보 ══════ */
 var SECTIONS = [
-  { k:"A", no:1, label:"신발에 얽힌 미신", id:"clinic-osy-0814-p1",
+  { k:"A", no:1, short:"신발 미신", label:"신발에 얽힌 미신", id:"clinic-osy-0814-p1",
     desc:"주제 찾기 · 행운/불운 구분 · walk away from · 가주어 it · feet(불규칙 복수) · 내용 불일치 · However의 역할" },
-  { k:"B", no:2, label:"컴퓨터와 개인정보 보호", id:"clinic-osy-0814-p2",
+  { k:"B", no:2, short:"컴퓨터 보호", label:"컴퓨터와 개인정보 보호", id:"clinic-osy-0814-p2",
     desc:"필자의 주장 · they와 it이 가리키는 것(지칭추론) · spyware가 하는 일 · when절 해석 · 내용 일치" },
-  { k:"C", no:3, label:"Clocky 알람시계", id:"clinic-osy-0814-p3",
+  { k:"C", no:3, short:"Clocky", label:"Clocky 알람시계", id:"clinic-osy-0814-p3",
     desc:"글의 목적(광고) · 내용 불일치 · for you(의미상 주어) · turn it off 어순 · to부정사 목적 · 영어 제목 고르기" }
 ];
 var QUIZ_TITLE_BASE = "오승유 기본 실력 확인 · 독해 개념";
@@ -347,24 +355,20 @@ function loadState(){
     if (s && typeof s === "object" && s.secs) state = s;
   } catch (e) {}
 }
-function saveState(){
-  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
-}
+function saveState(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {} }
 function clearState(){
   try { localStorage.removeItem(STORE_KEY); } catch (e) {}
   state = { name:"", secs:{} };
 }
 
-/* ══════ 현재 풀이 중인 영역 ══════ */
+/* ══════ 진행 중 상태 ══════ */
+var pickedKey = null;
 var curKey = null, QS = [], current = 0, correctCount = 0;
 var wrongNumbers = [], answersLog = [], shuffled = [], startTime = 0, locked = false;
 
 function shuffle(arr){
   var a = arr.slice();
-  for (var i=a.length-1;i>0;i--){
-    var j = Math.floor(Math.random()*(i+1));
-    var t=a[i]; a[i]=a[j]; a[j]=t;
-  }
+  for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; }
   return a;
 }
 function conceptHTML(){
@@ -373,71 +377,98 @@ function conceptHTML(){
   }).join("");
 }
 function show(id){
-  ["start-card","menu-card","concept-card","quiz-card","result-card"].forEach(function(x){
+  ["start-card","concept-card","quiz-card","result-card"].forEach(function(x){
     $(x).classList.toggle("hidden", x !== id);
   });
   window.scrollTo(0,0);
 }
 
-/* ══════ 1. 이름 ══════ */
-var nameInput = $("name-input"), startBtn = $("start-btn");
-nameInput.addEventListener("input", function(){ startBtn.disabled = nameInput.value.trim().length === 0; });
-nameInput.addEventListener("keydown", function(e){ if (e.key === "Enter" && !startBtn.disabled) startBtn.click(); });
-startBtn.addEventListener("click", function(){
-  var v = nameInput.value.trim();
-  if (!v) return;
-  state.name = v;
-  saveState();
-  showMenu();
-});
+/* ══════ 시작 화면 ══════ */
+var nameInput = $("name-input"), startBtn = $("start-btn"), freshBtn = $("fresh-btn");
 
-/* ══════ 2. 영역 선택 ══════ */
-function showMenu(){
-  var doneCount = 0;
-  $("menu-sub").innerHTML = "<b>"+state.name+"</b> 학생, 원하는 영역부터 골라 풀면 돼요.<br>"
-    + "중간에 창이 닫혀도 <b>풀던 자리에서 이어서</b> 풀 수 있어요!";
-  var box = $("seclist");
+function renderGrid(){
+  var box = $("secgrid");
   box.innerHTML = "";
+  var doneCount = 0;
   SECTIONS.forEach(function(sc){
-    var qs = qsOf(sc.k);
-    var st = state.secs[sc.k] || null;
-    var status, cls, btn;
-    if (st && st.done){
-      doneCount++;
-      status = '<div class="st ok">✓ 완료 · '+st.score+' / '+st.total+'점 &nbsp;·&nbsp; 다시 풀려면 눌러요</div>';
-      cls = "sec done";
-      btn = "restart";
-    } else if (st && st.cur > 0){
-      status = '<div class="st ing">▶ 진행 중 · '+st.cur+'번까지 풀었어요 &nbsp;·&nbsp; 이어서 풀기</div>';
-      cls = "sec";
-      btn = "resume";
-    } else {
-      status = '<div class="st todo">시작하기</div>';
-      cls = "sec";
-      btn = "new";
-    }
-    var d = document.createElement("div");
-    d.className = cls;
-    d.innerHTML = '<div class="row"><span class="no">'+sc.no+'</span><span class="t">'+sc.label+'</span>'
-      + '<span class="n">'+qs.length+'문항</span></div>'
-      + '<div class="d">'+sc.desc+'</div>' + status;
-    d.addEventListener("click", function(){ openSection(sc.k, btn === "resume"); });
-    box.appendChild(d);
+    var qs = qsOf(sc.k), st = state.secs[sc.k];
+    var badge = "";
+    if (st && st.done){ doneCount++; badge = '<span class="badge ok">✓ '+st.score+'/'+st.total+'</span>'; }
+    else if (st && st.cur > 0){ badge = '<span class="badge ing">진행 '+st.cur+'/'+qs.length+'</span>'; }
+    else { badge = '<span class="badge">&nbsp;</span>'; }
+    var b = document.createElement("div");
+    b.className = "secbtn" + (pickedKey === sc.k ? " on" : "");
+    b.innerHTML = '<div class="t">'+sc.no+'영역</div><div class="s">'+sc.short+'<br>'+qs.length+'문항</div>'+badge;
+    b.addEventListener("click", function(){ pickedKey = sc.k; renderStart(); });
+    box.appendChild(b);
   });
   $("all-done").classList.toggle("hidden", doneCount < SECTIONS.length);
-  show("menu-card");
 }
+
+function renderStart(){
+  renderGrid();
+  var hasName = nameInput.value.trim().length > 0;
+  if (!pickedKey){
+    $("sec-desc").textContent = "영역을 선택하면 어떤 내용을 다루는지 알려드려요.";
+    startBtn.textContent = "시험 시작";
+    freshBtn.classList.add("hidden");
+  } else {
+    var sc = secOf(pickedKey), st = state.secs[pickedKey], qs = qsOf(pickedKey);
+    $("sec-desc").innerHTML = "<b>"+sc.no+"영역 · "+sc.label+"</b><br>"+sc.desc;
+    if (st && st.done){
+      startBtn.textContent = "다시 풀기 (지난 점수 "+st.score+"/"+st.total+")";
+      freshBtn.classList.add("hidden");
+    } else if (st && st.cur > 0){
+      startBtn.textContent = "이어서 풀기 ("+(st.cur+1)+"번부터)";
+      freshBtn.classList.remove("hidden");
+    } else {
+      startBtn.textContent = "시험 시작 ("+qs.length+"문항)";
+      freshBtn.classList.add("hidden");
+    }
+  }
+  startBtn.disabled = !(hasName && pickedKey);
+}
+
+nameInput.addEventListener("input", renderStart);
+nameInput.addEventListener("keydown", function(e){ if (e.key === "Enter" && !startBtn.disabled) startBtn.click(); });
+
+startBtn.addEventListener("click", function(){
+  var v = nameInput.value.trim();
+  if (!v || !pickedKey) return;
+  state.name = v;
+  saveState();
+  var st = state.secs[pickedKey];
+  openSection(pickedKey, !!(st && !st.done && st.cur > 0));
+});
+
+freshBtn.addEventListener("click", function(){
+  var v = nameInput.value.trim();
+  if (!v || !pickedKey) return;
+  state.name = v;
+  delete state.secs[pickedKey];
+  saveState();
+  openSection(pickedKey, false);
+});
+
 $("reset-btn").addEventListener("click", function(){
   if (!window.confirm("지금까지 푼 기록을 모두 지우고 처음부터 다시 시작할까요?")) return;
   clearState();
   nameInput.value = "";
-  startBtn.disabled = true;
+  pickedKey = null;
+  renderStart();
   show("start-card");
 });
 
-/* ══════ 3. 영역 열기 ══════ */
+function backToStart(){
+  renderStart();
+  show("start-card");
+}
+$("back-menu-1").addEventListener("click", backToStart);
+$("back-menu-2").addEventListener("click", backToStart);
+
+/* ══════ 영역 열기 ══════ */
 function openSection(k, doResume){
-  curKey = k;
+  curKey = k; pickedKey = k;
   QS = qsOf(k);
   var st = state.secs[k];
   if (doResume && st && st.sh && st.sh.length === QS.length && st.cur > 0 && st.cur < QS.length){
@@ -461,10 +492,8 @@ function openSection(k, doResume){
   show("concept-card");
 }
 $("to-quiz-btn").addEventListener("click", function(){ show("quiz-card"); showQuestion(); });
-$("back-menu-1").addEventListener("click", showMenu);
-$("back-menu-2").addEventListener("click", showMenu);
 
-/* ══════ 4. 문제 ══════ */
+/* ══════ 문제 ══════ */
 function showQuestion(){
   var q = QS[current], pg = PASSAGES[q.p], sc = secOf(curKey);
   $("progress").textContent = (current+1)+" / "+QS.length;
@@ -513,7 +542,7 @@ document.addEventListener("keydown", function(e){
   }
 });
 
-/* ══════ 5. 결과 ══════ */
+/* ══════ 결과 ══════ */
 function cheerText(s, total){
   var r = s / total;
   if (r >= 0.95) return "완벽에 가까워요! 이 정도 독해력이면 지문이 길어져도 끄떡없어요 👏";
@@ -521,7 +550,6 @@ function cheerText(s, total){
   if (r >= 0.6) return "잘하고 있어요! 개념 카드를 한 번 더 읽고 오답 해설을 꼼꼼히 보면 훨씬 단단해져요 💪";
   return "여기까지 온 것부터가 잘한 거예요! 해설을 천천히 읽으면서 개념 카드와 짝지어 보면 다음엔 확 올라갑니다 🌱";
 }
-
 function nextUndone(){
   for (var i=0;i<SECTIONS.length;i++){
     var st = state.secs[SECTIONS[i].k];
@@ -559,11 +587,9 @@ function showResult(){
   var nb = $("next-btn");
   if (nx){
     nb.classList.remove("hidden");
-    nb.textContent = nx.no + "영역(" + nx.label + ") 풀러 가기 →";
+    nb.textContent = nx.no + "영역(" + nx.short + ") 풀러 가기 →";
     nb.onclick = function(){ openSection(nx.k, false); };
-  } else {
-    nb.classList.add("hidden");
-  }
+  } else nb.classList.add("hidden");
 
   $("kakao-btn").textContent = "결과 복사하기 → 지나티처에게 카톡으로 보내기";
 
@@ -582,12 +608,9 @@ function showResult(){
 /* ══════ 결과 복사 ══════ */
 function copyText(msg, btn, doneLabel){
   if (navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(msg).then(function(){
-      btn.textContent = doneLabel;
-    }).catch(function(){ window.prompt("아래 내용을 길게 눌러 복사하세요", msg); });
-  } else {
-    window.prompt("아래 내용을 길게 눌러 복사하세요", msg);
-  }
+    navigator.clipboard.writeText(msg).then(function(){ btn.textContent = doneLabel; })
+      .catch(function(){ window.prompt("아래 내용을 길게 눌러 복사하세요", msg); });
+  } else window.prompt("아래 내용을 길게 눌러 복사하세요", msg);
 }
 
 $("kakao-btn").addEventListener("click", function(){
@@ -619,13 +642,9 @@ $("all-copy-btn").addEventListener("click", function(){
 
 /* ══════ 시작 ══════ */
 loadState();
-if (state.name){
-  nameInput.value = state.name;
-  startBtn.disabled = false;
-  showMenu();
-} else {
-  show("start-card");
-}
+if (state.name) nameInput.value = state.name;
+renderStart();
+show("start-card");
 </script>
 </body>
 </html>
