@@ -6,52 +6,75 @@
 <meta name="robots" content="noindex">
 <title>오승유 기본 실력 확인 · 독해 개념 20문항 | 영핏 지나티처</title>
 <style>
+  :root { --teal:#2f7c83; --teal-d:#235e64; --teal-l:#e6f1f1; --line:#dbe4e5; --ink:#243137; --ink2:#52646d; --shadow:0 6px 24px rgba(36,49,55,.08); }
+  .brand-head { text-align:center; margin-bottom:16px; }
+  .brand-head .logo { display:inline-flex; align-items:center; gap:9px; font-weight:800; letter-spacing:.5px; color:var(--teal-d); font-size:18px; }
+  .brand-head .logo .mk { width:30px; height:30px; border-radius:9px; background:var(--teal); color:#fff; display:grid; place-items:center; font-size:15px; font-weight:800; box-shadow:var(--shadow); }
+  .brand-head .bsub { color:var(--ink2); font-size:13px; margin-top:4px; }
+  .brand { text-align:center; margin-top:18px; }
+  .brand .logo { display:inline-flex; align-items:center; gap:7px; font-weight:800; color:var(--teal-d); font-size:14px; }
+  .brand .logo .mk { width:23px; height:23px; border-radius:7px; background:var(--teal); color:#fff; display:grid; place-items:center; font-size:12px; font-weight:800; }
+
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  body { font-family: 'Malgun Gothic','Apple SD Gothic Neo',sans-serif; background:#eef3f3; color:#26332f; min-height:100vh; display:flex; justify-content:center; padding:18px 12px 60px; }
+  body { font-family: "Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif; background:linear-gradient(160deg,#eef2f3,#e2ebec); color:#243137; min-height:100vh; display:flex; justify-content:center; padding:18px 12px 60px; }
   .wrap { width:100%; max-width:620px; }
-  .card { background:#fff; border-radius:16px; padding:24px 20px; box-shadow:0 2px 12px rgba(0,0,0,.06); margin-bottom:14px; }
-  h1 { font-size:1.28rem; color:#2e7d6e; margin-bottom:6px; letter-spacing:-.3px; }
-  h2 { font-size:1.05rem; color:#2e7d6e; margin-bottom:10px; }
-  .sub { font-size:.88rem; color:#77857f; line-height:1.6; margin-bottom:16px; }
-  .brand { font-size:.78rem; color:#9aa8a3; text-align:center; margin-top:6px; }
-  input[type=text] { width:100%; padding:13px; font-size:1.05rem; border:1.5px solid #cfdcd8; border-radius:10px; }
-  input[type=text]:focus { outline:none; border-color:#2e7d6e; }
-  .btn { display:block; width:100%; margin-top:14px; padding:14px; font-size:1.05rem; font-weight:700; color:#fff; background:#2e7d6e; border:none; border-radius:10px; cursor:pointer; }
-  .btn:disabled { background:#bcc9c5; cursor:default; }
-  .btn.ghost { background:#fff; color:#2e7d6e; border:1.5px solid #2e7d6e; }
-  .progress { font-size:.82rem; color:#7d8b86; margin-bottom:8px; display:flex; justify-content:space-between; }
-  .bar { height:6px; background:#e3ecea; border-radius:99px; overflow:hidden; margin-bottom:16px; }
-  .bar > i { display:block; height:100%; background:#2e7d6e; width:0; transition:width .25s; }
-  .passage { background:#f7faf9; border:1.5px solid #dde8e5; border-radius:12px; padding:14px 15px; margin-bottom:16px; }
-  .passage .ptag { display:inline-block; font-size:.72rem; font-weight:700; color:#fff; background:#2e7d6e; border-radius:99px; padding:3px 10px; margin-bottom:8px; }
+  .card { background:#fff; border-radius:16px; padding:24px 20px; border:1px solid #dbe4e5; box-shadow:0 6px 24px rgba(36,49,55,.08); margin-bottom:14px; }
+  h1 { font-size:1.28rem; color:#235e64; margin-bottom:6px; letter-spacing:-.3px; }
+  h2 { font-size:1.05rem; color:#235e64; margin-bottom:10px; }
+  .sub { font-size:.88rem; color:#52646d; line-height:1.6; margin-bottom:16px; }
+  .brand { font-size:.78rem; color:#52646d; text-align:center; margin-top:6px; }
+  input[type=text] { width:100%; padding:13px; font-size:1.05rem; border:1.5px solid #dbe4e5; border-radius:10px; }
+  input[type=text]:focus { outline:none; border-color:#2f7c83; }
+  .btn { display:block; width:100%; margin-top:14px; padding:14px; font-size:1.05rem; font-weight:700; color:#fff; background:#2f7c83; border:none; border-radius:10px; cursor:pointer; }
+  .btn:disabled { background:#b6c4c6; cursor:default; }
+  .btn.ghost { background:#fff; color:#2f7c83; border:1.5px solid #2f7c83; }
+  .progress { font-size:.82rem; color:#52646d; margin-bottom:8px; display:flex; justify-content:space-between; }
+  .bar { height:6px; background:#dbe4e5; border-radius:99px; overflow:hidden; margin-bottom:16px; }
+  .bar > i { display:block; height:100%; background:#2f7c83; width:0; transition:width .25s; }
+  .passage { background:#f7faf9; border:1.5px solid #dbe4e5; border-radius:12px; padding:14px 15px; margin-bottom:16px; }
+  .passage .ptag { display:inline-block; font-size:.72rem; font-weight:700; color:#fff; background:#2f7c83; border-radius:99px; padding:3px 10px; margin-bottom:8px; }
   .passage p { font-size:.97rem; line-height:1.85; letter-spacing:.1px; }
-  .passage .gloss { display:block; margin-top:8px; font-size:.78rem; color:#8a9793; }
+  .passage .gloss { display:block; margin-top:8px; font-size:.78rem; color:#52646d; }
   .qtext { font-size:1.05rem; line-height:1.65; margin-bottom:14px; font-weight:700; }
-  .choice { display:block; width:100%; text-align:left; padding:13px 14px; margin-bottom:9px; font-size:1rem; line-height:1.5; background:#f6f9f8; border:1.5px solid #dde5e3; border-radius:10px; cursor:pointer; }
-  .choice:active { background:#e2efec; }
-  .choice.picked { background:#e2efec; border-color:#2e7d6e; }
-  .num { color:#2e7d6e; font-weight:700; margin-right:6px; }
-  .concept { border:1.5px solid #dde8e5; border-radius:12px; padding:15px 16px; margin-bottom:12px; background:#fbfdfc; }
-  .concept .ctitle { font-size:1rem; font-weight:700; color:#2e7d6e; margin-bottom:8px; }
+  .choice { display:block; width:100%; text-align:left; padding:13px 14px; margin-bottom:9px; font-size:1rem; line-height:1.5; background:#f6f9f8; border:1.5px solid #dbe4e5; border-radius:10px; cursor:pointer; }
+  .choice:active { background:#e6f1f1; }
+  .choice.picked { background:#e6f1f1; border-color:#2f7c83; }
+  .num { color:#2f7c83; font-weight:700; margin-right:6px; }
+  .concept { border:1.5px solid #dbe4e5; border-radius:12px; padding:15px 16px; margin-bottom:12px; background:#fbfdfc; }
+  .concept .ctitle { font-size:1rem; font-weight:700; color:#2f7c83; margin-bottom:8px; }
   .concept p { font-size:.93rem; line-height:1.7; margin-bottom:6px; }
-  .ex { background:#eff5f3; border-radius:8px; padding:9px 11px; font-size:.9rem; line-height:1.65; margin-top:7px; }
-  .ex em { font-style:normal; color:#2e7d6e; font-weight:700; }
+  .ex { background:#e6f1f1; border-radius:8px; padding:9px 11px; font-size:.9rem; line-height:1.65; margin-top:7px; }
+  .ex em { font-style:normal; color:#2f7c83; font-weight:700; }
   details { margin-bottom:14px; }
-  details > summary { cursor:pointer; font-size:.88rem; color:#2e7d6e; font-weight:700; padding:9px 12px; background:#f1f7f5; border-radius:9px; list-style:none; }
+  details > summary { cursor:pointer; font-size:.88rem; color:#2f7c83; font-weight:700; padding:9px 12px; background:#e6f1f1; border-radius:9px; list-style:none; }
   details > summary::-webkit-details-marker { display:none; }
   details[open] > summary { margin-bottom:10px; }
-  .score-big { font-size:2.1rem; font-weight:700; color:#2e7d6e; text-align:center; margin:10px 0 4px; }
-  .exp { background:#f6f9f8; border-left:4px solid #2e7d6e; border-radius:8px; padding:12px 14px; margin-bottom:10px; font-size:.92rem; line-height:1.65; }
-  .exp.wrong { border-left-color:#c0392b; background:#fdf6f5; }
-  .exp b { color:#2e7d6e; }
-  .exp.wrong b { color:#c0392b; }
-  .exp .key { color:#2e7d6e; font-weight:700; }
+  .score-big { font-size:2.1rem; font-weight:700; color:#235e64; text-align:center; margin:10px 0 4px; }
+  .exp { background:#f6f9f8; border-left:4px solid #2f7c83; border-radius:8px; padding:12px 14px; margin-bottom:10px; font-size:.92rem; line-height:1.65; }
+  .exp.wrong { border-left-color:#c2603f; background:#fbeae3; }
+  .exp b { color:#235e64; }
+  .exp.wrong b { color:#c2603f; }
+  .exp .key { color:#235e64; font-weight:700; }
   .hidden { display:none; }
-  .tip { font-size:.83rem; color:#8a9793; text-align:center; margin-top:10px; line-height:1.6; }
+  .tip { font-size:.83rem; color:#52646d; text-align:center; margin-top:10px; line-height:1.6; }
 </style>
 </head>
 <body>
 <div class="wrap">
+  <div class="brand-head">
+    <div class="logo"><span class="mk">영</span> 영핏 지나티처</div>
+    <div class="bsub" id="brand-sub">기본 실력 확인 · 2영역 · 컴퓨터와 개인정보 보호</div>
+  </div>
+
+
+  <!-- 이어하기 -->
+  <div class="card hidden" id="resume-card">
+    <h1>이어서 풀까요? 🔖</h1>
+    <p class="sub" id="resume-sub"></p>
+    <button class="btn" id="resume-btn">이어서 하기</button>
+    <button class="btn ghost" id="restart-btn">처음부터 다시 풀기</button>
+    <div class="brand"><span class="logo"><span class="mk">영</span> 영핏 지나티처</span></div>
+  </div>
 
   <!-- 시작 -->
   <div class="card" id="start-card">
@@ -59,7 +82,7 @@
     <p class="sub" id="start-sub"></p>
     <input type="text" id="name-input" placeholder="이름을 입력하세요" maxlength="20" autocomplete="off">
     <button class="btn" id="start-btn" disabled>개념 카드 보러 가기</button>
-    <p class="brand">제공 · 영핏 지나티처</p>
+    <div class="brand"><span class="logo"><span class="mk">영</span> 영핏 지나티처</span></div>
   </div>
 
   <!-- 개념 카드 -->
@@ -94,7 +117,7 @@
       <h2>📝 전체 해설</h2>
       <div id="explanations"></div>
     </div>
-    <p class="brand">제공 · 영핏 지나티처</p>
+    <div class="brand"><span class="logo"><span class="mk">영</span> 영핏 지나티처</span></div>
   </div>
 
 </div>
@@ -304,6 +327,49 @@ $("start-sub").innerHTML = META.intro;
 document.title = QUIZ_TITLE + " | 영핏 지나티처";
 $("to-quiz-btn").textContent = "문제 풀러 가기 (" + QUESTIONS.length + "문항)";
 
+/* ══════ 이어하기 (영역별 저장) ══════ */
+var STORE_KEY = "engfit-osy0814-" + SECTION;
+function saveProgress(){
+  try {
+    localStorage.setItem(STORE_KEY, JSON.stringify({
+      name: studentName, current: current, correctCount: correctCount,
+      wrong: wrongNumbers, log: answersLog, sh: shuffled, t: startTime
+    }));
+  } catch (e) {}
+}
+function clearProgress(){ try { localStorage.removeItem(STORE_KEY); } catch (e) {} }
+
+(function initResume(){
+  var raw = null;
+  try { raw = localStorage.getItem(STORE_KEY); } catch (e) { return; }
+  if (!raw) return;
+  var s = null;
+  try { s = JSON.parse(raw); } catch (e) {}
+  if (!s || typeof s.current !== "number" || s.current <= 0 || s.current >= QUESTIONS.length
+      || !s.sh || s.sh.length !== QUESTIONS.length) { clearProgress(); return; }
+  $("start-card").classList.add("hidden");
+  $("resume-card").classList.remove("hidden");
+  $("resume-sub").innerHTML = "<b>" + s.name + "</b> 학생, 저번에 " + s.current + "번 문제까지 풀었어요.<br>"
+    + "이어서 " + (s.current + 1) + "번부터 풀 수 있어요. 어떻게 할까요?";
+  $("resume-btn").addEventListener("click", function(){
+    studentName = s.name; current = s.current; correctCount = s.correctCount || 0;
+    wrongNumbers = s.wrong || []; answersLog = s.log || []; shuffled = s.sh;
+    startTime = s.t || Date.now();
+    $("concept-box").innerHTML = conceptHTML();
+    $("concept-box2").innerHTML = conceptHTML();
+    $("resume-card").classList.add("hidden");
+    $("quiz-card").classList.remove("hidden");
+    showQuestion();
+    window.scrollTo(0, 0);
+  });
+  $("restart-btn").addEventListener("click", function(){
+    clearProgress();
+    $("resume-card").classList.add("hidden");
+    $("start-card").classList.remove("hidden");
+  });
+})();
+
+
 function shuffle(arr){
   var a = arr.slice();
   for (var i = a.length - 1; i > 0; i--){
@@ -378,7 +444,7 @@ function pick(choice, mark){
   setTimeout(function(){
     locked = false;
     current++;
-    if (current < QUESTIONS.length){ showQuestion(); window.scrollTo(0, 0); }
+    if (current < QUESTIONS.length){ saveProgress(); showQuestion(); window.scrollTo(0, 0); }
     else showResult();
   }, 250);
 }
@@ -400,6 +466,7 @@ function cheerText(s){
 }
 
 function showResult(){
+  clearProgress();
   $("quiz-card").classList.add("hidden");
   $("result-card").classList.remove("hidden");
   $("score-line").textContent = correctCount + " / " + QUESTIONS.length;
